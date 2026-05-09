@@ -1,0 +1,95 @@
+name: Deploy Test Dashboard
+
+on:
+  workflow_run:
+    workflows: ["CI Automation Tests", "Smoke Tests", "Regression Tests"]
+    types:
+      - completed
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Download artifacts from workflow run
+      if: github.event_name == 'workflow_run'
+      uses: actions/download-artifact@v4
+      with:
+        pattern: test-results-*
+        path: reports/
+        merge-multiple: true
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Generate static dashboard
+      run: |
+        pip install flask
+
+        # Create static HTML dashboard
+        mkdir -p _site
+
+        # Copy dashboard template
+        cp dashboard/templates/dashboard.html _site/index.html
+
+        # Copy test history if exists
+        if [ -d "reports/history" ]; then
+          mkdir -p _site/api
+          cp reports/history/index.json _site/api/runs.json 2>/dev/null || echo "[]" > _site/api/runs.json
+
+          # Copy individual run files
+          for file in reports/history/*.json; do
+            if [ -f "$file" ] && [ "$(basename $file)" != "index.json" ]; then
+              run_id=$(basename "$file" .json)
+              cp "$file" "_site/api/run_${run_id}.json"
+            fi
+          done
+        else
+          mkdir -p _site/api
+          echo "[]" > _site/api/runs.json
+        fi
+
+        # Update API paths in HTML for static hosting
+        sed -i "s|'/api/runs'|'./api/runs.json'|g" _site/index.html
+        sed -i "s|'/api/run/'+runId|'./api/run_'+runId+'.json'|g" _site/index.html
+
+        # Copy HTML reports if they exist
+        if [ -d "reports" ]; then
+          cp reports/*.html _site/ 2>/dev/null || true
+        fi
+
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: '_site'
+
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
+
+    - name: Comment PR with dashboard link
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '📊 Test Dashboard: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/'
+          })
