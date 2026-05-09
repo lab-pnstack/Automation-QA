@@ -1,0 +1,73 @@
+name: Parallel Test Execution
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_suite:
+        description: 'Test suite to run'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - authentication
+          - product
+          - cart
+          - checkout
+
+jobs:
+  parallel-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Install Chrome
+      uses: browser-actions/setup-chrome@v1
+      with:
+        chrome-version: stable
+
+    - name: Run tests in parallel
+      env:
+        BROWSER: chrome
+        HEADLESS: true
+      run: |
+        case "${{ github.event.inputs.test_suite }}" in
+          authentication)
+            pytest tests/test_login.py -v -n auto
+            ;;
+          product)
+            pytest tests/test_search_product.py -v -n auto
+            ;;
+          cart)
+            pytest tests/test_add_to_cart.py -v -n auto
+            ;;
+          checkout)
+            pytest tests/test_checkout.py -v -n auto
+            ;;
+          all)
+            pytest tests/ -v -n auto --dist loadgroup
+            ;;
+        esac
+
+    - name: Upload results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: parallel-test-results
+        path: |
+          reports/
+          screenshots/
+        retention-days: 14
