@@ -1,12 +1,15 @@
 # utils/driver_setup.py
 import os
 import glob
+import logging
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from utils.config import BROWSER, HEADLESS, IMPLICIT_WAIT, PAGE_LOAD_TIMEOUT
+
+logger = logging.getLogger(__name__)
 
 def get_driver():
     browser = os.getenv("BROWSER", BROWSER).lower()
@@ -23,16 +26,22 @@ def get_driver():
         options.add_argument("--disable-gpu")
         options.add_argument("--window-size=1920,1080")
 
-        # Install driver and get the correct executable path
+        # Install driver and get the path
         driver_path = ChromeDriverManager().install()
+        logger.info(f"ChromeDriverManager returned: {driver_path}")
+
+        # Check if the returned path is valid
+        is_file = os.path.isfile(driver_path)
+        is_executable = os.access(driver_path, os.X_OK) if is_file else False
+        logger.info(f"Is file: {is_file}, Is executable: {is_executable}")
 
         # Fix: webdriver-manager sometimes returns wrong file
-        # The actual chromedriver is in the same directory
-        if not os.path.isfile(driver_path) or not os.access(driver_path, os.X_OK):
-            # Search for the actual chromedriver executable
+        if not is_file or not is_executable:
+            logger.warning("Returned path is not a valid executable, searching for chromedriver...")
             driver_dir = os.path.dirname(driver_path)
+            logger.info(f"Searching in directory: {driver_dir}")
 
-            # Look for chromedriver in the directory and subdirectories
+            # Look for chromedriver in common locations
             possible_paths = [
                 os.path.join(driver_dir, 'chromedriver'),
                 os.path.join(driver_dir, 'chromedriver-linux64', 'chromedriver'),
@@ -44,13 +53,20 @@ def get_driver():
             for pattern in ['**/chromedriver', '**/chromedriver.exe']:
                 found = glob.glob(os.path.join(driver_dir, pattern), recursive=True)
                 possible_paths.extend(found)
+                logger.info(f"Glob pattern {pattern} found: {found}")
 
             # Find the first executable file
             for path in possible_paths:
+                logger.info(f"Checking path: {path}")
                 if os.path.isfile(path) and os.access(path, os.X_OK):
                     driver_path = path
+                    logger.info(f"Found valid chromedriver at: {driver_path}")
                     break
+            else:
+                logger.error(f"Could not find valid chromedriver in {driver_dir}")
+                logger.error(f"Checked paths: {possible_paths}")
 
+        logger.info(f"Using chromedriver at: {driver_path}")
         driver = webdriver.Chrome(
             service=ChromeService(driver_path),
             options=options
