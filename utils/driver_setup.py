@@ -30,13 +30,9 @@ def get_driver():
         driver_path = ChromeDriverManager().install()
         logger.info(f"ChromeDriverManager returned: {driver_path}")
 
-        # Check if the returned path is valid
-        is_file = os.path.isfile(driver_path)
-        is_executable = os.access(driver_path, os.X_OK) if is_file else False
-        logger.info(f"Is file: {is_file}, Is executable: {is_executable}")
-
-        # Fix: webdriver-manager sometimes returns wrong file
-        if not is_file or not is_executable:
+        # Fix: webdriver-manager sometimes returns wrong file (THIRD_PARTY_NOTICES instead of chromedriver)
+        # Check if the path ends with the wrong file
+        if 'THIRD_PARTY_NOTICES' in driver_path or not driver_path.endswith(('chromedriver', 'chromedriver.exe')):
             logger.warning("Returned path is not a valid executable, searching for chromedriver...")
             driver_dir = os.path.dirname(driver_path)
             logger.info(f"Searching in directory: {driver_dir}")
