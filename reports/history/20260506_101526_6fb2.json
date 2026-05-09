@@ -1,0 +1,21 @@
+{
+  "run_id": "20260506_101526_6fb2",
+  "date": "2026-05-06 10:15:57",
+  "total": 1,
+  "passed": 0,
+  "failed": 1,
+  "duration": 13.72,
+  "pass_rate": 0.0,
+  "tests": [
+    {
+      "name": "test_order_number_generated",
+      "node_id": "tests/test_checkout.py::TestCheckoutFlow::test_order_number_generated",
+      "module": "Checkout",
+      "class": "TestCheckoutFlow",
+      "status": "fail",
+      "duration": 13.72,
+      "error": "t smart enough here\n>       raise exception_class(message, screen, stacktrace)\nE       selenium.common.exceptions.WebDriverException: Message: tab crashed\nE         (Session info: chrome=147.0.7727.138)\n\nC:\\Python312\\Lib\\site-packages\\selenium\\webdriver\\remote\\errorhandler.py:229: WebDriverException",
+      "timestamp": "2026-05-06 10:15:57"
+    }
+  ]
+}

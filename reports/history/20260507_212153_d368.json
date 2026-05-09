@@ -1,0 +1,122 @@
+{
+  "run_id": "20260507_212153_d368",
+  "date": "2026-05-07 21:27:37",
+  "total": 11,
+  "passed": 11,
+  "failed": 0,
+  "warnings": 0,
+  "duration": 99.17,
+  "pass_rate": 100.0,
+  "tests": [
+    {
+      "name": "test_wishlist_shows_product",
+      "module": "test_user_account",
+      "status": "pass",
+      "duration": 10.07,
+      "error": "",
+      "warning": "",
+      "screenshot": "",
+      "timestamp": "2026-05-07 21:22:22"
+    },
+    {
+      "name": "test_wishlist_accessible",
+      "module": "test_user_account",
+      "status": "pass",
+      "duration": 1.42,
+      "error": "",
+      "warning": "",
+      "screenshot": "",
+      "timestamp": "2026-05-07 21:22:57"
+    },
+    {
+      "name": "test_wishlist_requires_login",
+      "module": "test_user_account",
+      "status": "pass",
+      "duration": 1.03,
+      "error": "",
+      "warning": "",
+      "screenshot": "",
+      "timestamp": "2026-05-07 21:23:10"
+    },
+    {
+      "name": "test_view_order_history",
+      "module": "test_user_account",
+      "status": "pass",
+      "duration": 1.41,
+      "error": "",
+      "warning": "",
+      "screenshot": "",
+      "timestamp": "2026-05-07 21:23:31"
+    },
+    {
+      "name": "test_order_history_has_info",
+      "module": "test_user_account",
+      "status": "pass",
+      "duration": 1.07,
+      "error": "",
+      "warning": "",
+      "screenshot": "",
+      "timestamp": "2026-05-07 21:23:52"
+    },
+    {
+      "name": "test_view_order_detail",
+      "module": "test_user_account",
+      "status": "pass",
+      "duration": 5.58,
+      "error": "",
+      "warning": "",
+      "screenshot": "",
+      "timestamp": "2026-05-07 21:24:18"
+    },
+    {
+      "name": "test_order_history_accessible",
+      "module": "test_user_account",
+      "status": "pass",
+      "duration": 12.56,
+      "error": "",
+      "warning": "",
+      "screenshot": "",
+      "timestamp": "2026-05-07 21:24:55"
+    },
+    {
+      "name": "test_change_password_success",
+      "module": "test_user_account",
+      "status": "pass",
+      "duration": 23.68,
+      "error": "",
+      "warning": "",
+      "screenshot": "",
+      "timestamp": "2026-05-07 21:25:39"
+    },
+    {
+      "name": "test_change_password_wrong_old",
+      "module": "test_user_account",
+      "status": "pass",
+      "duration": 21.83,
+      "error": "",
+      "warning": "",
+      "screenshot": "",
+      "timestamp": "2026-05-07 21:26:33"
+    },
+    {
+      "name": "test_change_password_too_short",
+      "module": "test_user_account",
+      "status": "pass",
+      "duration": 8.89,
+      "error": "",
+      "warning": "",
+      "screenshot": "",
+      "timestamp": "2026-05-07 21:27:01"
+    },
+    {
+      "name": "test_change_password_mismatch",
+      "module": "test_user_account",
+      "status": "pass",
+      "duration": 11.63,
+      "error": "",
+      "warning": "",
+      "screenshot": "",
+      "timestamp": "2026-05-07 21:27:31"
+    }
+  ]
+}

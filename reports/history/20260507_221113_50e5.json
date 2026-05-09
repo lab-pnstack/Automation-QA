@@ -1,0 +1,132 @@
+{
+  "run_id": "20260507_221113_50e5",
+  "date": "2026-05-07 22:17:05",
+  "total": 12,
+  "passed": 12,
+  "failed": 0,
+  "warnings": 0,
+  "duration": 88.61,
+  "pass_rate": 100.0,
+  "tests": [
+    {
+      "name": "test_wishlist_shows_product",
+      "module": "test_user_account",
+      "status": "pass",
+      "duration": 8.39,
+      "error": "",
+      "warning": "",
+      "screenshot": "",
+      "timestamp": "2026-05-07 22:11:43"
+    },
+    {
+      "name": "test_remove_from_wishlist",
+      "module": "test_user_account",
+      "status": "pass",
+      "duration": 13.62,
+      "error": "",
+      "warning": "",
+      "screenshot": "",
+      "timestamp": "2026-05-07 22:12:17"
+    },
+    {
+      "name": "test_wishlist_accessible",
+      "module": "test_user_account",
+      "status": "pass",
+      "duration": 1.53,
+      "error": "",
+      "warning": "",
+      "screenshot": "",
+      "timestamp": "2026-05-07 22:12:36"
+    },
+    {
+      "name": "test_wishlist_requires_login",
+      "module": "test_user_account",
+      "status": "pass",
+      "duration": 0.91,
+      "error": "",
+      "warning": "",
+      "screenshot": "",
+      "timestamp": "2026-05-07 22:12:48"
+    },
+    {
+      "name": "test_view_order_history",
+      "module": "test_user_account",
+      "status": "pass",
+      "duration": 1.13,
+      "error": "",
+      "warning": "",
+      "screenshot": "",
+      "timestamp": "2026-05-07 22:13:08"
+    },
+    {
+      "name": "test_order_history_has_info",
+      "module": "test_user_account",
+      "status": "pass",
+      "duration": 1.32,
+      "error": "",
+      "warning": "",
+      "screenshot": "",
+      "timestamp": "2026-05-07 22:13:29"
+    },
+    {
+      "name": "test_view_order_detail",
+      "module": "test_user_account",
+      "status": "pass",
+      "duration": 3.84,
+      "error": "",
+      "warning": "",
+      "screenshot": "",
+      "timestamp": "2026-05-07 22:13:53"
+    },
+    {
+      "name": "test_order_history_accessible",
+      "module": "test_user_account",
+      "status": "pass",
+      "duration": 2.09,
+      "error": "",
+      "warning": "",
+      "screenshot": "",
+      "timestamp": "2026-05-07 22:14:18"
+    },
+    {
+      "name": "test_change_password_success",
+      "module": "test_user_account",
+      "status": "pass",
+      "duration": 11.64,
+      "error": "",
+      "warning": "",
+      "screenshot": "",
+      "timestamp": "2026-05-07 22:14:49"
+    },
+    {
+      "name": "test_change_password_wrong_old",
+      "module": "test_user_account",
+      "status": "pass",
+      "duration": 22.78,
+      "error": "",
+      "warning": "",
+      "screenshot": "",
+      "timestamp": "2026-05-07 22:15:34"
+    },
+    {
+      "name": "test_change_password_too_short",
+      "module": "test_user_account",
+      "status": "pass",
+      "duration": 8.96,
+      "error": "",
+      "warning": "",
+      "screenshot": "",
+      "timestamp": "2026-05-07 22:16:26"
+    },
+    {
+      "name": "test_change_password_mismatch",
+      "module": "test_user_account",
+      "status": "pass",
+      "duration": 12.4,
+      "error": "",
+      "warning": "",
+      "screenshot": "",
+      "timestamp": "2026-05-07 22:16:59"
+    }
+  ]
+}

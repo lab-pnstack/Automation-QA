@@ -1,0 +1,101 @@
+{
+  "run_id": "20260506_103901_2292",
+  "date": "2026-05-06 10:43:34",
+  "total": 9,
+  "passed": 9,
+  "failed": 0,
+  "duration": 78.84,
+  "pass_rate": 100.0,
+  "tests": [
+    {
+      "name": "test_add_to_wishlist",
+      "node_id": "tests/test_user_account.py::TestWishlist::test_add_to_wishlist",
+      "module": "User Account",
+      "class": "TestWishlist",
+      "status": "pass",
+      "duration": 7.02,
+      "error": "",
+      "timestamp": "2026-05-06 10:39:20"
+    },
+    {
+      "name": "test_wishlist_shows_product",
+      "node_id": "tests/test_user_account.py::TestWishlist::test_wishlist_shows_product",
+      "module": "User Account",
+      "class": "TestWishlist",
+      "status": "pass",
+      "duration": 6.35,
+      "error": "",
+      "timestamp": "2026-05-06 10:39:45"
+    },
+    {
+      "name": "test_remove_from_wishlist",
+      "node_id": "tests/test_user_account.py::TestWishlist::test_remove_from_wishlist",
+      "module": "User Account",
+      "class": "TestWishlist",
+      "status": "pass",
+      "duration": 13.23,
+      "error": "",
+      "timestamp": "2026-05-06 10:40:16"
+    },
+    {
+      "name": "test_wishlist_requires_login",
+      "node_id": "tests/test_user_account.py::TestWishlist::test_wishlist_requires_login",
+      "module": "User Account",
+      "class": "TestWishlist",
+      "status": "pass",
+      "duration": 0.91,
+      "error": "",
+      "timestamp": "2026-05-06 10:40:31"
+    },
+    {
+      "name": "test_order_history_has_info",
+      "node_id": "tests/test_user_account.py::TestOrderHistory::test_order_history_has_info",
+      "module": "User Account",
+      "class": "TestOrderHistory",
+      "status": "pass",
+      "duration": 1.14,
+      "error": "",
+      "timestamp": "2026-05-06 10:41:01"
+    },
+    {
+      "name": "test_change_password_success",
+      "node_id": "tests/test_user_account.py::TestChangePassword::test_change_password_success",
+      "module": "User Account",
+      "class": "TestChangePassword",
+      "status": "pass",
+      "duration": 10.17,
+      "error": "",
+      "timestamp": "2026-05-06 10:41:51"
+    },
+    {
+      "name": "test_change_password_wrong_old",
+      "node_id": "tests/test_user_account.py::TestChangePassword::test_change_password_wrong_old",
+      "module": "User Account",
+      "class": "TestChangePassword",
+      "status": "pass",
+      "duration": 21.27,
+      "error": "",
+      "timestamp": "2026-05-06 10:42:30"
+    },
+    {
+      "name": "test_change_password_too_short",
+      "node_id": "tests/test_user_account.py::TestChangePassword::test_change_password_too_short",
+      "module": "User Account",
+      "class": "TestChangePassword",
+      "status": "pass",
+      "duration": 8.56,
+      "error": "",
+      "timestamp": "2026-05-06 10:42:58"
+    },
+    {
+      "name": "test_change_password_mismatch",
+      "node_id": "tests/test_user_account.py::TestChangePassword::test_change_password_mismatch",
+      "module": "User Account",
+      "class": "TestChangePassword",
+      "status": "pass",
+      "duration": 10.19,
+      "error": "",
+      "timestamp": "2026-05-06 10:43:27"
+    }
+  ]
+}

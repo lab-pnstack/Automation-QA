@@ -1,0 +1,8 @@
+- Lệnh chạy all các case
+pytest tests/ -v 
+- Lệnh chạy từng chức năng
+pytest tests/test_login.py -v -s
+pytest tests/test_add_to_cart.py -v -s
+pytest tests/test_checkout.py -v -s
+pytest tests/test_search_product.py -v -s
+pytest tests/test_user_account.py -v -s
