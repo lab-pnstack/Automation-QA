@@ -5,6 +5,7 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
+from webdriver_manager.core.os_manager import ChromeType
 from utils.config import BROWSER, HEADLESS, IMPLICIT_WAIT, PAGE_LOAD_TIMEOUT
 
 def get_driver():
@@ -22,8 +23,20 @@ def get_driver():
         options.add_argument("--disable-gpu")
         options.add_argument("--window-size=1920,1080")
 
+        # Install driver and get the correct executable path
+        driver_path = ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
+
+        # Ensure we're using the actual chromedriver executable, not a text file
+        if not driver_path.endswith('chromedriver'):
+            # Fix path if webdriver-manager returns wrong file
+            import glob
+            driver_dir = os.path.dirname(driver_path)
+            chromedriver_files = glob.glob(os.path.join(driver_dir, '**/chromedriver'), recursive=True)
+            if chromedriver_files:
+                driver_path = chromedriver_files[0]
+
         driver = webdriver.Chrome(
-            service=ChromeService(ChromeDriverManager().install()),
+            service=ChromeService(driver_path),
             options=options
         )
 
