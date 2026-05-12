@@ -64,7 +64,6 @@ jobs:
         pytest tests/ \
           -v \
           --tb=short \
-          --maxfail=5 \
           -n auto \
           --html=reports/report_${{ matrix.browser }}.html \
           --self-contained-html
