@@ -2,7 +2,7 @@ name: Deploy Test Dashboard
 
 on:
   workflow_run:
-    workflows: ["CI Automation Tests", "Smoke Tests", "Scheduled Regression Tests"]
+    workflows: ["CI"]
     types:
       - completed
   workflow_dispatch:
